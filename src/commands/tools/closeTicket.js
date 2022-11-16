@@ -7,7 +7,8 @@ module.exports = {
   async execute(client, interaction) {
     if (interaction.channel.name.includes(interaction.user.id)) {
       await interaction.reply({
-        content: `O ticket foi arquivo por: ${interaction.user.username}! `,
+        content: `O ticket foi arquivado por: ${interaction.user.username}! `,
+        ephemeral: true,
       });
       await interaction.channel.setArchived(true);
     } else {
