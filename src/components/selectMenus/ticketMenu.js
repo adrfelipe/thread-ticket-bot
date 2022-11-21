@@ -5,62 +5,73 @@ const {
   ButtonStyle,
   ChannelType,
 } = require("discord.js");
+require("dotenv").config();
+const { ticketChannelId } = process.env;
+const ticketEmbed = require("../embed/ticketEmbed");
 
 module.exports = {
   data: {
     name: "ticket",
   },
   async execute(client, interaction) {
-    if (interaction.values[0] === "Tirar dúvidas") {
-      const guild = client.guilds.cache.get(interaction.guild.id);
-      const threadsChannels = guild.channels.cache.filter((t) => t.isThread());
-      const ticketChannelName = `${interaction.user.username} (${interaction.user.id})`;
+    await interaction.update({ fetchReply: true });
 
-      for (const thread of threadsChannels.values()) {
-        if (thread.name === ticketChannelName) {
-          if (thread.archived) {
-            await thread.setArchived(false);
-          } else {
-            return interaction.reply({
-              content: `Você já possui um ticket aberto em <#${thread.id}>!`,
-              ephemeral: true,
-            });
-          }
-        } else {
-          const ticketThread = await interaction.channel.threads
-            .create({
-              name: ticketChannelName,
-              autoArchiveDuration: 60,
-              type: ChannelType.PrivateThread,
-              reason: `Motivo do ticket: ${interaction.values[0]}`,
-            })
-            .then(async (thread) => {
-              thread.members.add(interaction.user.id);
-              const ticketEmbed = new EmbedBuilder()
-                .setColor(0x2f3136)
-                .setAuthor({
-                  name: `Atendimento | PAGOT`,
-                  iconURL:
-                    "https://cdn.discordapp.com/icons/903890619691323413/a_7cbbac541173afc77052d470d78306f3.gif?size=2048",
-                })
-                .setDescription(`Motivo do ticket: ${interaction.values[0]}`);
+    const channel = interaction.guild.channels.cache.get(ticketChannelId);
 
-              await interaction.reply({
-                content: `Criei um ticket pra você em: <#${thread.id}>`,
-                ephemeral: true,
-              });
+    const ticketChannelName = `${interaction.user.username} (${interaction.user.id})`;
 
-              await thread.send({
-                embeds: [ticketEmbed],
-              });
-            });
-        }
+    let thread ,
+        threads = [];
+
+    channel.threads.cache.map((threadChannel) => {
+      if (threadChannel.name == ticketChannelName) {
+        thread = threadChannel;
+        threads.push(thread.name);
       }
-    }
+    });
 
     if (interaction.values[0] === "Fazer uma denúncia") {
-      await interaction.reply({
-        content: `Denúnias não estão disponíveis no momento!`,
+      await interaction.followUp({
+        content: "Denúncias não estão disponíveis no momento.",
+        ephemeral: true,
+      });
+      return;
+    }
+
+    if (!thread) {
+      return interaction.channel.threads
+        .create({
+          name: ticketChannelName,
+          autoArchiveDuration: 60,
+          type: ChannelType.GuildPrivateThread,
+          reason: `Motivo do ticket: ${interaction.values[0]}`,
+        })
+
+        .then(async (thread) => {
+          thread.members.add(interaction.user.id);
+          interaction.followUp({
+            content: `Criei um ticket pra você em: <#${thread.id}>`,
+            ephemeral: true,
+          });
+
+          thread.send({
+            embeds: [ticketEmbed(interaction)],
+          });
+
+          thread.setInvitable(
+            false,
+            "Proibindo outras pessoas além de moderadores a participarem da thread."
+          );
+        });
+    } else if (thread.archived) {
+      thread.setArchived(false);
+      interaction.followUp({
+        content: `Seu ticket foi reaberto em: <#${thread.id}>`,
+        ephemeral: true,
+      });
+    } else {
+      interaction.followUp({
+        content: `Você já possui um ticket aberto! Acesse em <#${thread.id}>`,
         ephemeral: true,
       });
     }

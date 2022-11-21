@@ -23,6 +23,13 @@ module.exports = async (client) => {
           console.log(`📕 | [Buttons] ${button.data.name} carregado.`);
         }
         break;
+      case "embeds":
+        for (const file of componentsFiles) {
+          const embed = require(`../components/${folder}/${file}`);
+          client.embeds.push(embed);
+          console.log(`📕 | [Embeds] ${embed.data.name} carregado.`);
+        }
+        break;
 
       default:
         break;
