@@ -8,7 +8,7 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/adrfelipe/thread-ticket-bot?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/adrfelipe/thread-ticket-bot?style=for-the-badge)
 
-## Para acessar a documentação em outros línguas, acesse:
+## Para ler a documentação em outros línguas, acesse:
 [![English](https://img.shields.io/badge/language-en-blue?style=for-the-badge)](https://github.com/adrfelipe/thread-ticket-bot/blob/main/README.en.md?style=for-the-badge)
 
 <img src="https://cdn.discordapp.com/attachments/998091644597440604/1044988173954064384/image.png" alt="Preview">
