@@ -7,11 +7,7 @@ const {
 require("dotenv").config();
 
 class ticket {
-  constructor() {
-    this.attendance;
-  }
-
-  static generate(interaction) {
+  static generate(interaction, attendance) {
     return [
       new ActionRowBuilder().addComponents(
         new ButtonBuilder()
@@ -42,8 +38,8 @@ class ticket {
       **__Categoria selecionada:__**
       \`\`\`js\n"${interaction.values[0]}"\`\`\`
       ${
-        this.attendance
-          ? `**Atendimento iniciado por:**\n${this.attendance}`
+        attendance
+          ? `**Atendimento iniciado por:**\n${attendance}`
           : ""
       }
       `),
@@ -69,12 +65,11 @@ class ticket {
 
       case "claimTicket":
         const attendance = interaction.user.username;
-        this.attendance = attendance;
 
         console.log(this)
         interaction.update({
-          embeds: [ticket.generate(interaction)[1]],
-          components: [ticket.generate(interaction)[0]],
+          embeds: [ticket.generate(interaction, attendance)[1]],
+          components: [ticket.generate(interaction, attendance)[0]],
         });
 
         console.log(attendance);
