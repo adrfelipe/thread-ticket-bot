@@ -1,38 +1,55 @@
-## Thread Ticket Discord Bot
+# Discord BOT - Sistema de Tickets por Thread
 
-<p align="center">
-    <br />
-    <br />
-    <a href="https://newsletter-deschamps.herokuapp.com/news">Demo</a>
-    ·
-    <a href="https://github.com/adrfelipe/thread-ticket-bot/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/adrfelipe/thread-ticket-bot/issues">Request Feature</a>
-</p>
+<!---Esses são exemplos. Veja https://shields.io para outras pessoas ou para personalizar este conjunto de escudos. Você pode querer incluir dependências, status do projeto e informações de licença aqui--->
 
-<p align="center">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/adrfelipe/thread-ticket-bot?color=1E61D9">
+![GitHub repo size](https://img.shields.io/github/repo-size/adrfelipe/thread-ticket-bot?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/adrfelipe/thread-ticket-bot?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/adrfelipe/thread-ticket-bot?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/adrfelipe/thread-ticket-bot?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/adrfelipe/thread-ticket-bot?style=for-the-badge)
 
-  <a href="https://github.com/adrfelipe/thread-ticket-bot/commits/main">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/adrfelipe/thread-ticket-bot?color=1E61D9">
-  </a>
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-1E61D9">
-  <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/adrfelipe/thread-ticket-bot?color=1E61D9" />
-  <a href="https://github.com/jjeanjacques10/newsletter-api/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/adrfelipe/thread-ticket-bot?color=1E61D9&logo=github">
-  </a>
-</p>
+## Para acessar a documentação em outros línguas, acesse:
+[![English](https://img.shields.io/badge/language-en-blue?style=for-the-badge)](https://github.com/adrfelipe/thread-ticket-bot/blob/main/README.en.md?style=for-the-badge)
 
-A ticket system discord bot using threads!
+<img src="https://cdn.discordapp.com/attachments/998091644597440604/1044988173954064384/image.png" alt="Preview">
 
-### Technologies
 
-- [Discord.js](https://discord.js.org/#/)
-- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
-- [Node.js](https://nodejs.org/)
+> BOT de Discord com um sistema completo de tickets usando Threads ao invés de canais convenciais. Possui todo o sistema de logs e funcionalidades para agilizar todo e qualquer atendimento!
 
-## Work In Progress!
+### Ajustes e melhorias
 
----
+O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-developed by [@adrfelipe](https://github.com/adrfelipe)
+- [x] Criar as handlers de comandos e componentes
+- [x] Possibilidade de várias categorias
+- [x] Sistema de arquivação de tickets
+- [ ] Criação de comandos personalizados para staff
+- [ ] Modularização e customização
+
+## 💻 Pré-requisitos
+
+* [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+* [Node.js](https://nodejs.org/)
+* [Discord.js](https://discordjs.guide/#before-you-begin)
+
+## 🚀 Como instalar
+
+Para instalar o Thread-ticket-bot, siga estas etapas:
+
+Execute o comando para instalar todas as dependências do projeto:
+```
+npm i
+```
+
+## ☕ Usando Thread-ticket-bot
+
+Para usar Thread-ticket-bot, siga estas etapas:
+```
+npm run dev
+```
+
+## 📝 Licença
+
+Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.
+
+[⬆ Voltar ao topo](thread-ticket-bot)<br>
