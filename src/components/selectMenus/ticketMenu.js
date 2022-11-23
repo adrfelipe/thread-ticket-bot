@@ -1,13 +1,8 @@
-const {
-  EmbedBuilder,
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-  ChannelType,
-} = require("discord.js");
+const { ChannelType } = require("discord.js");
 require("dotenv").config();
 const { ticketChannelId } = process.env;
-const ticketEmbed = require("../embed/ticketEmbed");
+// const ticketEmbed = require("../embed/ticketEmbed");
+const ticket = require("../buttons/ticketButtons");
 
 module.exports = {
   data: {
@@ -20,8 +15,8 @@ module.exports = {
 
     const ticketChannelName = `${interaction.user.username} (${interaction.user.id})`;
 
-    let thread ,
-        threads = [];
+    let thread,
+      threads = [];
 
     channel.threads.cache.map((threadChannel) => {
       if (threadChannel.name == ticketChannelName) {
@@ -55,7 +50,8 @@ module.exports = {
           });
 
           thread.send({
-            embeds: [ticketEmbed(interaction)],
+            embeds: [ticket.generate(interaction)[1]],
+            components: [ticket.generate(interaction)[0]],
           });
 
           thread.setInvitable(

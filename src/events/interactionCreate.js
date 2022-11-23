@@ -46,7 +46,7 @@ module.exports = async (client, interaction) => {
 
   if (interaction.isButton()) {
     const button = client.buttons.find(
-      (button) => button.data.name === interaction.customId
+      (button) => button.name
     );
 
     if (!button) {
@@ -57,10 +57,10 @@ module.exports = async (client, interaction) => {
     }
 
     try {
-      return button.execute(client, interaction);
+      return button.execute(interaction);
     } catch (error) {
       console.error(error);
-      return interaction.editReply({
+      return interaction.reply({
         content: `❌ | [Discord Components] Ocorreu um erro ao executar o botão ${interaction.customId}.`,
         ephemeral: true,
       });

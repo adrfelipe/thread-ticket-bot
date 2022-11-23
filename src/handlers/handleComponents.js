@@ -20,7 +20,7 @@ module.exports = async (client) => {
         for (const file of componentsFiles) {
           const button = require(`../components/${folder}/${file}`);
           client.buttons.push(button);
-          console.log(`📕 | [Buttons] ${button.data.name} carregado.`);
+          console.log(`📕 | [Buttons] ${button.name} carregado.`);
         }
         break;
       case "embeds":
