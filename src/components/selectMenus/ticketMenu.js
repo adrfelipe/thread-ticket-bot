@@ -1,4 +1,4 @@
-const { ChannelType } = require("discord.js");
+const { ChannelType, PermissionsBitField  } = require("discord.js");
 require("dotenv").config();
 const { ticketChannelId } = process.env;
 const ticketEmbed = require("../embed/ticketEmbed");
@@ -16,7 +16,7 @@ module.exports = {
     const ticketChannelName = `${interaction.user.username} (${interaction.user.id})`;
 
     let thread,
-      threads = [];
+    threads = [];
 
     channel.threads.cache.map((threadChannel) => {
       if (threadChannel.name == ticketChannelName) {
@@ -39,6 +39,16 @@ module.exports = {
           name: ticketChannelName,
           autoArchiveDuration: 60,
           type: ChannelType.GuildPrivateThread,
+          permissionOverwrites: [
+            {
+              id: interaction.guild.roles.everyone,
+              deny: [PermissionsBitField.Flags.ViewChannel],
+            },
+            {
+              id: interaction.user.id,
+              allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages],
+            },
+          ],
           reason: `Motivo do ticket: ${interaction.values[0]}`,
         })
 
