@@ -57,7 +57,7 @@ module.exports = async (client, interaction) => {
     }
 
     try {
-      return button.execute(interaction);
+      return button(interaction);
     } catch (error) {
       console.error(error);
       return interaction.reply({
